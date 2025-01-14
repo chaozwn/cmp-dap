@@ -134,6 +134,9 @@ end
 ---@return string[]
 function source:get_trigger_characters()
   local session = require('dap').session()
+  if not session then
+		return {}
+	end
   local trigger_characters = session.capabilities.completionTriggerCharacters or {}
   local contains_dot = false
   for _, trigger_character in ipairs(trigger_characters) do
